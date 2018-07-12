@@ -1,0 +1,374 @@
+<html>
+<head>
+    <title>THE GAEM 2</title>
+    <meta charset="utf-8">
+    <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body class="body--main-menu">
+    <section class="main-menu">
+        <div class="main-menu__wrapper">
+            <ul>
+                <li class="main-menu__item">
+                    <span class="new-game">New game</span>
+                </li>
+                <li class="main-menu__item">
+                    <span class="load-game">Load game</span>
+                </li>
+                <li class="main-menu__item">
+                    <span class="instructions-btn">Instructions</span>
+                </li>
+            </ul>
+        </div>
+        <div class="character-list hidden">
+            <div class="list-up">
+                <div class="points-container">
+                    <span class="remaining-points">Remaining points:</span>
+                    <span class="points">10</span>
+                </div>
+                <div class="name-container">
+                    <span class="name">Enter your name: </span>
+                    <input class="name-input" type="text">
+                </div>
+            </div>
+            <ul class="parameters">
+                <li class="parameter">
+                    <span class="parameter__name">Strength</span>
+                    <span class="parameter__index strength">3</span>
+                    <div class="parameter__controls">
+                        <button class="parameter__increase">+</button>
+                        <button class="parameter__decrease">-</button>
+                    </div>
+                    <p class="parameter__desc">
+                        Displays the muscular might of your character.
+                        Every point of strength gives you +4 damage
+                        and +1 max health.
+                    </p>
+                </li>
+                <li class="parameter">
+                    <span class="parameter__name">Agility</span>
+                    <span class="parameter__index agility">3</span>
+                    <div class="parameter__controls">
+                        <button class="parameter__increase">+</button>
+                        <button class="parameter__decrease">-</button>
+                    </div>
+                    <p class="parameter__desc">
+                        Displays the dexterity of your character.
+                        Every point gives you +1 damage, +1 initiative
+                        and +0.5 chance to make a critical hit.
+                    </p>
+                </li>
+                <li class="parameter">
+                    <span class="parameter__name">Speed</span>
+                    <span class="parameter__index speed">3</span>
+                    <div class="parameter__controls">
+                        <button class="parameter__increase">+</button>
+                        <button class="parameter__decrease">-</button>
+                    </div>
+                    <p class="parameter__desc">
+                        Determines your quickness in battle.
+                        Every point of speed gives you +4 initiative
+                        and +0.5 chance to dodge enemy attack.
+                    </p>
+                </li>
+                <li class="parameter">
+                    <span class="parameter__name">Endurance</span>
+                    <span class="parameter__index endurance">3</span>
+                    <div class="parameter__controls">
+                        <button class="parameter__increase">+</button>
+                        <button class="parameter__decrease">-</button>
+                    </div>
+                    <p class="parameter__desc">
+                        Determines the toughness of your character.
+                        Every point of strength gives you +4 max health
+                        and +0.5% damage resistance.
+                    </p>
+                </li>
+            </ul>
+            <div class="list-down">
+                <button class="back-to-menu"><- Back to menu</button>
+                <button class="next">Next -></button>
+            </div>
+        </div>
+        <div class="instructions hidden">
+            <div class="instructions__header">
+                <h2>Instructions</h2>
+            </div>
+            <div class="instructions__wrapper">
+                <div>
+                    ↑ - move up
+                    <br>
+                    ↓ - move down
+                    <br>
+                    ← - move left
+                    <br>
+                    → - move right
+                    <br>
+                    c - player information
+                    <br>
+                    esc - show menu
+                    <br>
+                    <p>
+                        Use roads and doors to navigate through the levels. Defeat enemies to gain experience and some useful
+                        loot. Once you have enough experience, your level will increase, giving you 1 additional LP (level point).
+                        You can spend it to raise one of your four main attributes. You can also interact with various items
+                        by clicking on them in your inventory (some of them are equippable items, like weapons and armor, and
+                        some are disposable, like healing potions).
+                    </p>
+                </div>
+            </div>
+            <div class="instructions__footer">
+                <span>Press "ESC" to close this window</span>
+            </div>
+        </div>
+    </section>
+    <section class="screen hidden">
+        <div class="screen__wrapper">
+            <div class="screen__level-rendered">
+
+            </div>
+            <div class="screen__battle hidden">
+                <div class="screen__battle-header">
+                    <span>The battle begins!</span>
+                </div>
+                <div class="screen__battle-content">
+                    <div class="screen__battle-player">
+                        <span class="player-name"></span>
+                        <div class="player-health">
+                            <div class="player-health-current"></div>
+                        </div>
+                    </div>
+                    <div class="screen__battle-log">
+
+                    </div>
+                    <div class="screen__battle-enemy">
+                        <span class="enemy-name"></span>
+                        <div class="enemy-health">
+                            <div class="enemy-health-current"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="screen__battle-footer">
+                    <span class="player-attack player-visible hidden">Press "A" to attack</span>
+                    <span class="player-retreat player-visible hidden">Press "R" to retreat</span>
+                    <span class="player-win player-visible hidden">You won! Press "V" to leave the battlefield</span>
+                    <span class="enemy-attack enemy-visible hidden">Enemy is attacking! Press "A" to defend yourself</span>
+                </div>
+            </div>
+            <div class="info hidden">
+                <div class="info__name-wrapper">
+                    <span class="info__name"></span>
+                    <div class="info__attr-wrapper">
+                        <div class="info__attr info__attr--strength">
+                            <h2>strength</h2>
+                            <span class="info__attr-number"></span>
+                            <button class="info__attr-add info__attr-add--strength hidden">+</button>
+                        </div>
+                        <div class="info__attr info__attr--agility">
+                            <h2>agility</h2>
+                            <span class="info__attr-number"></span>
+                            <button class="info__attr-add info__attr-add--agility hidden">+</button>
+                        </div>
+                        <div class="info__attr info__attr--speed">
+                            <h2>speed</h2>
+                            <span class="info__attr-number"></span>
+                            <button class="info__attr-add info__attr-add--speed hidden">+</button>
+                        </div>
+                        <div class="info__attr info__attr--endurance">
+                            <h2>endurance</h2>
+                            <span class="info__attr-number"></span>
+                            <button class="info__attr-add info__attr-add--endurance hidden">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="info__upper">
+                    <div class="info__upper-container">
+                        <div class="info__player-wrapper">
+                            <div class="info__player-exp">Experience
+                                <span class="info__player-exp-number"></span>
+                            </div>
+                            <div class="info__player-level">Level
+                                <span class="info__player-level-number"></span>
+                            </div>
+                            <div class="info__player-image">
+                                <ul class="info__player-items">
+                                    <li class="info__player-item info__player-item--neck"></li>
+                                    <li class="info__player-item info__player-item--head"></li>
+                                    <li class="info__player-item info__player-item--finger"></li>
+                                    <li class="info__player-item info__player-item--left-hand"></li>
+                                    <li class="info__player-item info__player-item--body"></li>
+                                    <li class="info__player-item info__player-item--right-hand"></li>
+                                    <li class="info__player-item info__player-item--weapon"></li>
+                                    <li class="info__player-item info__player-item--legs"></li>
+                                    <li class="info__player-item info__player-item--shield"></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="info__hp-wrapper">
+                            <div class="info__hp-numbers">
+                                <span class="info__hp-current-number"></span>
+                                <span class="info__hp-max-number"></span>
+                            </div>
+                            <div class="info__hp">
+                                <div class="info__hp-current"></div>
+                            </div>
+                        </div>
+                        <div class="info__inventory-wrapper">
+                            <div class="info__points-wrapper">
+                                <span class="info__points-text">Attribute points:</span>
+                                <span class="info__points-number"></span>
+                            </div>
+                            <span>Inventory</span>
+                            <div class="info__inventory">
+                                <ul class="info__inventory-categories">
+                                    <li class="info__inventory-category info__inventory-category--weapon info__inventory-category--active">
+                                        ⚔
+                                    </li>
+                                    <li class="info__inventory-category info__inventory-category--armor">
+                                        ☖
+                                    </li>
+                                    <li class="info__inventory-category info__inventory-category--help">
+                                        ☤
+                                    </li>
+                                </ul>
+                                <ul class="info__inventory-list info__inventory-list--weapon info__inventory-list--active"></ul>
+                                <ul class="info__inventory-list info__inventory-list--armor"></ul>
+                                <ul class="info__inventory-list info__inventory-list--help"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info__upper-item-description-wrapper">
+                        <div class="info__upper-item-description">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="info__lower">
+                    <div class="info__secondary-attr-wrapper">
+                        <ul class="info__secondary-attr-list">
+                            <li class="info__secondary-attr info__secondary-attr--max-health">
+                                <span></span>
+                                <p>
+                                    Your maximum health points.
+                                </p>
+                            </li>
+                            <li class="info__secondary-attr info__secondary-attr--initiative">
+                                <span></span>
+                                <p>
+                                    Initiative. The one with higher initiative will make the first
+                                    move during battle.
+                                </p>
+                            </li>
+                            <li class="info__secondary-attr info__secondary-attr--damage">
+                                <span></span>
+                                <p>
+                                    Damage. Determines the possible damage you can inflict on your enemy.
+                                </p>
+                            </li>
+                            <li class="info__secondary-attr info__secondary-attr--crit">
+                                <span></span>
+                                <p>
+                                    Critical chance. Your chance of dealing double damage during battle.
+                                </p>
+                            </li>
+                            <li class="info__secondary-attr info__secondary-attr--dodge">
+                                <span></span>
+                                <p>
+                                    Dodge chance. Your chance of avoiding damage completely during enemy attack.
+                                </p>
+                            </li>
+                            <li class="info__secondary-attr info__secondary-attr--resist">
+                                <span></span>
+                                <p>
+                                    Resistance. The damage you take during enemy attack is reduced by this percent
+                                    (85% max).
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <ul class="main-menu-ingame hidden">
+                <li class="quit-game__wrapper">
+                    <button class="quit-game">Quit game</button>
+                </li>
+                <li class="save-game__wrapper">
+                    <button class="save-game">Save game</button>
+                </li>
+            </ul>
+            <div class="loot hidden">
+                <div class="loot__header">
+                    <h2>You found some loot!</h2>
+                </div>
+                <div class="loot__content">
+                    <p class="loot__text">
+                        You were able to find some valuable items among enemy belongings. You can now take them with you
+                        or leave it behind, the choice is yours.
+                    </p>
+                    <span>Items found: </span>
+                    <div class="loot__wrapper">
+                        <ul class="loot__container"></ul>
+                        <p class="loot__description"></p>
+                    </div>
+                </div>
+                <div class="loot__footer">
+                    <span class="loot__view-btn">Click on item to view info</span>
+                    <span class="loot__pick-btn hidden">Press "A" to take this item with you</span>
+                    <span class="loot__exit-btn">Press "V" to leave the battlefield</span>
+                </div>
+            </div>
+            <div class="intro hidden">
+                <div class="intro__header">
+                    <h2>Introduction</h2>
+                </div>
+                <div class="intro__content">
+                    <p>
+                        You were summoned to this world by a powerful wizard to defeat the evil extradimensional
+                        invaders from the 13th Dimension of Absolute Horror, led by the fearsome and horrifying
+                        Cybermonster. Defeat his 4 warlords - elemental masters - to gain access to the portal, that
+                        leads to Cybemonster's lair, and destroy that abomination once and for all!
+                    </p>
+                </div>
+                <div class="intro__footer">
+                    <span class="intro__next">Press "A" to continue</span>
+                </div>
+            </div>
+            <div class="victory hidden">
+                <div class="victory__header">
+                    <h2>You won!</h2>
+                </div>
+                <div class="victory__content">
+                    <p>
+                       You have defeated the horrendous Cybermonster and his most powerful warlords, thus making the
+                        whole extradimensional army to pack their bags and flee back to the 13th Dimension. This world
+                        is safe now, and you decide to stay here and help its' inhabitants to rebuild their homeland.
+                    </p>
+                </div>
+                <div class="victory__footer">
+                    <span class="intro__next">Press "A" to continue</span>
+                </div>
+            </div>
+        </div>
+        <div class="interface">
+            <div class="interface__menu">
+                ESC - main menu
+            </div>
+            <div class="interface__arrows">
+                ARROWS - move
+            </div>
+            <div class="interface__player">
+                C - player info
+            </div>
+        </div>
+    </section>
+    <script src="enums.js"></script>
+    <script src="cell.js"></script>
+    <script src="player.js"></script>
+    <script src="enemy.js"></script>
+    <script src="player_info.js"></script>
+    <script src="item.js"></script>
+    <script src="game_events.js"></script>
+    <script src="levels.js"></script>
+    <script src="game.js"></script>
+    <script src="main-menu.js"></script>
+</body>
+</html>
